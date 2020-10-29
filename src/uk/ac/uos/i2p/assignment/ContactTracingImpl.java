@@ -6,6 +6,7 @@ import java.util.Map;
 public class ContactTracingImpl implements ContactTracing{
     private Map<String, String> studentList;
     public void loadStudentList(Map<String, String> studentEntry){
+        //comment
         studentList = studentEntry;
     }
     public void loadCourseList(Map<String, String> courseEntry){
