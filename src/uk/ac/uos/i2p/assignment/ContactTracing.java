@@ -10,5 +10,5 @@ public interface ContactTracing {
     public void loadStudentCourseList(Map<String, String> studentCourseEntry);
     public List<String> findMatchingCourses(String inputStudentNumber);
     public List<String> findMatchingStudents(List<String> matchingCourseList);
-    public List<String> contactTracing(String inputStudentNumber);
+//    public List<String> contactTracing(String inputStudentNumber);
 }
