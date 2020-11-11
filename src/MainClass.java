@@ -12,7 +12,7 @@ public class MainClass {
         studentList.put("Olivia Wilde", "S103");
 
         HashMap<String, String> emailList = new HashMap<String, String>();
-        emailList.put("S101", "abc.uos.ac.uk");
+        emailList.put("S101", "abc@uos.ac.uk");
         emailList.put("S102", "xyz@uos.ac.uk");
         emailList.put("S103", "klm@uos.ac.uk");
 
@@ -26,23 +26,27 @@ public class MainClass {
         studentCourseList.put("S102", "NE02");
         studentCourseList.put("S103", "SE01");
 
-        ContactTracingImpl test = new ContactTracingImpl();
+        ContactTracingImpl contactTracingInstance = new ContactTracingImpl();
 
-        test.loadStudentList(studentList);
-        test.loadEmailList(emailList);
-        test.loadCourseList(courseList);
-        test.loadStudentCourseList(studentCourseList);
+        contactTracingInstance.loadStudentList(studentList);
+        contactTracingInstance.loadEmailList(emailList);
+        contactTracingInstance.loadCourseList(courseList);
+        contactTracingInstance.loadStudentCourseList(studentCourseList);
 
         List<String> returnCourseList = new ArrayList<String>();
         List<String> returnMatchingStudentList = new ArrayList<String>();
+        List<String> returnEmailList = new ArrayList<String>();
 
-        returnCourseList = test.findMatchingCourses("S101");
-        System.out.println(returnCourseList);
+        returnCourseList = contactTracingInstance.findMatchingCourses("S101");
+        //System.out.println(returnCourseList);
 
-        returnMatchingStudentList = test.findMatchingStudents(returnCourseList);
-        System.out.println(returnMatchingStudentList);
+        returnMatchingStudentList = contactTracingInstance.findMatchingStudents(returnCourseList);
+        //System.out.println(returnMatchingStudentList);
 
-        return test;
+        returnEmailList = contactTracingInstance.contactTracing("S103");
+        System.out.println(returnEmailList);
+
+        return contactTracingInstance;
     }
 
     public static void main(String[] args){
