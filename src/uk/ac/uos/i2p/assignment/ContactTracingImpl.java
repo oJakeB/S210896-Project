@@ -1,14 +1,19 @@
+//gives reference for the class and interface
 package uk.ac.uos.i2p.assignment;
 
+//imports all of the utilities required for the code
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+//declares the Contact Tracing Class, and implements the interface
 public class ContactTracingImpl implements ContactTracing{
+    //declares all of the maps used
     private Map<String, String> studentList;
     private  Map<String, String> courseList;
     private Map<String, String> emailList;
     private Map<String, String> studentCourseList;
+    //first 4 methods for task 1, setting variables equal to information in MainClass.java
     public void loadStudentList(Map<String, String> studentEntry){
         studentList = studentEntry;
     }
@@ -25,6 +30,7 @@ public class ContactTracingImpl implements ContactTracing{
         String returnValue = studentCourseList.get(inputStudentNumber);
         List<String> courseList = new ArrayList<String>();
 
+        //validation around null return value
         if(returnValue != null){
             courseList.add(returnValue);
         }
@@ -34,7 +40,7 @@ public class ContactTracingImpl implements ContactTracing{
     public List<String> findMatchingStudents(List<String> matchingCourseList){
 
         List<String> matchingStudents = new ArrayList<String>();
-
+        //for loop, looping through each matching course ID
         matchingCourseList.forEach((courseID)->{
             studentCourseList.forEach((studentID, secondCourseID)->{
                 if(secondCourseID == courseID){
