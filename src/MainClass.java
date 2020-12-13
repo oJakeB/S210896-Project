@@ -47,7 +47,7 @@ public class MainClass {
 
         returnEmailList = contactTracingInstance.contactTracing("S103");
         System.out.println(returnEmailList);
-        
+
         return contactTracingInstance;
     }
 

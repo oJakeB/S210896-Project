@@ -12,3 +12,4 @@ public interface ContactTracing {
     public List<String> findMatchingStudents(List<String> matchingCourseList);
     public List<String> contactTracing(String inputStudentNumber);
 }
+
