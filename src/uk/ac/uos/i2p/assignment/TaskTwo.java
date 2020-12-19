@@ -5,13 +5,13 @@ import java.awt.desktop.QuitEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class TaskTwo {
     static Scanner takeInput = new Scanner(System.in);
     static ContactTracingImpl contactTracing = new ContactTracingImpl();
-
     public static String studentName;
     public static String studentNumber;
     public static String covidResult;
@@ -19,7 +19,13 @@ public class TaskTwo {
     public static String contactTracedFile;
 
     public static void main(String[] args){
+        contactTracing.loadCourseList(Map.of("Jake Brown","1"));
+        contactTracing.loadEmailList(Map.of("Jake Brown", "1"));
+        contactTracing.loadStudentCourseList(Map.of("Jake Brown","1"));
+        contactTracing.loadStudentList(Map.of("Jake Brown", "1"));
         setStudentName();
+        setStudentNumber();
+        setCovidResult();
     }
 
     public static void setStudentName(){
@@ -38,9 +44,10 @@ public class TaskTwo {
     }
 
     public static void compareCovidResult(){
-        if(covidResult.toLowerCase() == "positive"){
+        if(covidResult.toLowerCase().equals("positive")){
             System.out.println("Please Input Name For Positive Result File");
             positiveResultFile = takeInput.nextLine();
+            writeResultFile(positiveResultFile);
         }
         else{
             System.out.println("Covid Result Is Negative");
@@ -48,7 +55,7 @@ public class TaskTwo {
     }
 
     public static void writeResultFile(String filename){
-        File outputFile = new File("./" + filename + ".txt");
+        File outputFile = new File("./covid outputs/" + filename + ".txt");
         //outputFile.getParentFile().mkdirs();
         FileWriter writingObject;
         try{

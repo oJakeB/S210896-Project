@@ -53,7 +53,9 @@ public class MainClass {
 
     public static void main(String[] args){
         //calls the loadData method when the program is run
-        loadData();
+        //loadData();
+        TaskTwo.main(null);
+        TaskTwo.compareCovidResult();
     }
 }
 

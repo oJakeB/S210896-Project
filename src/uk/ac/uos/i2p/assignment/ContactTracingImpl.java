@@ -23,13 +23,11 @@ public class ContactTracingImpl implements ContactTracing{
     public void loadEmailList(Map<String, String> emailEntry){
         emailList = emailEntry;
     }
-    public void loadStudentCourseList(Map<String, String> studentCourseEntry){
-        studentCourseList = studentCourseEntry;
-    }
+    public void loadStudentCourseList(Map<String, String> studentCourseEntry){ studentCourseList = studentCourseEntry; }
+
     public List<String> findMatchingCourses(String inputStudentNumber){
         String returnValue = studentCourseList.get(inputStudentNumber);
         List<String> courseList = new ArrayList<String>();
-
         //validation around null return value
         if(returnValue != null){
             courseList.add(returnValue);
@@ -37,8 +35,8 @@ public class ContactTracingImpl implements ContactTracing{
 
         return courseList;
     }
-    public List<String> findMatchingStudents(List<String> matchingCourseList){
 
+    public List<String> findMatchingStudents(List<String> matchingCourseList){
         List<String> matchingStudents = new ArrayList<String>();
         //for loop, looping through each matching course ID
         matchingCourseList.forEach((courseID)->{
@@ -51,8 +49,8 @@ public class ContactTracingImpl implements ContactTracing{
 
         return matchingStudents;
     }
-    public List<String> contactTracing(String inputStudentNumber) {
 
+    public List<String> contactTracing(String inputStudentNumber) {
         List<String> matchingEmails = new ArrayList<String>();
         List<String> matchingCourseList = findMatchingCourses(inputStudentNumber);
         List<String> studentIDList = findMatchingStudents(matchingCourseList);
@@ -70,6 +68,5 @@ public class ContactTracingImpl implements ContactTracing{
             }
         });
         return matchingEmails;
-
     }
 }
