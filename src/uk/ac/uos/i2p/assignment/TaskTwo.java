@@ -5,7 +5,6 @@ import java.awt.desktop.QuitEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Scanner;
 
 
@@ -17,16 +16,6 @@ public class TaskTwo {
     public static String covidResult;
     public static String positiveResultFile;
     public static String contactTracedFile;
-
-    public static void main(String[] args){
-        contactTracing.loadCourseList(Map.of("Jake Brown","1"));
-        contactTracing.loadEmailList(Map.of("Jake Brown", "1"));
-        contactTracing.loadStudentCourseList(Map.of("Jake Brown","1"));
-        contactTracing.loadStudentList(Map.of("Jake Brown", "1"));
-        setStudentName();
-        setStudentNumber();
-        setCovidResult();
-    }
 
     public static void setStudentName(){
         System.out.println("Please Input Student Name:");

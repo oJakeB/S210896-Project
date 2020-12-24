@@ -13,10 +13,9 @@ public class ContactTracingImpl implements ContactTracing{
     private  Map<String, String> courseList;
     private Map<String, String> emailList;
     private Map<String, String> studentCourseList;
+
     //first 4 methods for task 1, setting variables equal to information in MainClass.java
-    public void loadStudentList(Map<String, String> studentEntry){
-        studentList = studentEntry;
-    }
+    public void loadStudentList(Map<String, String> studentEntry){ studentList = studentEntry; }
     public void loadCourseList(Map<String, String> courseEntry){
         courseList = courseEntry;
     }
@@ -28,11 +27,9 @@ public class ContactTracingImpl implements ContactTracing{
     public List<String> findMatchingCourses(String inputStudentNumber){
         String returnValue = studentCourseList.get(inputStudentNumber);
         List<String> courseList = new ArrayList<String>();
-        //validation around null return value
         if(returnValue != null){
             courseList.add(returnValue);
         }
-
         return courseList;
     }
 
@@ -58,15 +55,20 @@ public class ContactTracingImpl implements ContactTracing{
         //removing already positive student so he doesn't flag up again
         studentIDList.remove(studentIDList.indexOf(inputStudentNumber));
 
-        System.out.println("Course ID: \n" + matchingCourseList.get(0));
-        System.out.println("Contact traced for given course: \n" + studentIDList.get(0));
-        System.out.println("Matched this student: \n" + inputStudentNumber);
+        System.out.println("Student Number of positive result: \n" + inputStudentNumber);
+        System.out.println("Positive Student Course ID: \n" + matchingCourseList.get(0));
+        System.out.println("Matched the following students that should self isolate:");
+        studentIDList.forEach(System.out::println);
 
-        emailList.forEach((studentNumber, emailAddress) -> {
-            if (studentNumber == studentIDList.get(0)) {
-                matchingEmails.add(emailAddress);
-            }
-        });
+        //nested for loop to compare student number in self isolate list to student email address in email list.
+        for (String currentStudentNumber : studentIDList) {
+            emailList.forEach((studentNumber, emailAddress) -> {
+                if(currentStudentNumber.equals(studentNumber)){
+                    matchingEmails.add(emailAddress);
+                }
+            });
+        }
+
         return matchingEmails;
     }
 }

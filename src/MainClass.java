@@ -11,11 +11,25 @@ public class MainClass {
         studentList.put("Clint Eastwood", "S101");
         studentList.put("Jamie Foxx", "S102");
         studentList.put("Olivia Wilde", "S103");
+        studentList.put("Brad Pitt", "S104");
+        studentList.put("Barack Obama", "S105");
+        studentList.put("Kim Kardashian", "S106");
+        studentList.put("Taylor Swift", "S107");
+        studentList.put("Kanye West", "S108");
+        studentList.put("Tom Cruise", "S109");
+
         //creates a new HashMap and assigns it student IDs and their respective email addresses
         HashMap<String, String> emailList = new HashMap<String, String>();
         emailList.put("S101", "abc@uos.ac.uk");
         emailList.put("S102", "xyz@uos.ac.uk");
         emailList.put("S103", "klm@uos.ac.uk");
+        emailList.put("S104", "bdp@uos.ac.uk");
+        emailList.put("S105", "bob@uos.ac.uk");
+        emailList.put("S106", "kkm@uos.ac.uk");
+        emailList.put("S107", "tls@uos.ac.uk");
+        emailList.put("S108", "kyw@uos.ac.uk");
+        emailList.put("S109", "tmc@uos.ac.uk");
+
         //creates a new HashMap and assigns it with a course, and a course ID
         HashMap<String, String> courseList = new HashMap<String, String>();
         courseList.put("Software Engineering", "SE01");
@@ -26,8 +40,14 @@ public class MainClass {
         studentCourseList.put("S101", "SE01");
         studentCourseList.put("S102", "NE02");
         studentCourseList.put("S103", "SE01");
+        studentCourseList.put("S104", "SE01");
+        studentCourseList.put("S105", "NE02");
+        studentCourseList.put("S106", "SE01");
+        studentCourseList.put("S107", "SE01");
+        studentCourseList.put("S108", "NE02");
+        studentCourseList.put("S109", "SE01");
 
-        //creates an instance of the class, so we can call the methods
+        //creates an instance of the class (otherwise known as an object), so we can call the methods
         ContactTracingImpl contactTracingInstance = new ContactTracingImpl();
 
         contactTracingInstance.loadStudentList(studentList);
@@ -35,27 +55,27 @@ public class MainClass {
         contactTracingInstance.loadCourseList(courseList);
         contactTracingInstance.loadStudentCourseList(studentCourseList);
 
-        List<String> returnCourseList = new ArrayList<String>();
-        List<String> returnMatchingStudentList = new ArrayList<String>();
-        List<String> returnEmailList = new ArrayList<String>();
-
-        returnCourseList = contactTracingInstance.findMatchingCourses("S101");
-        //System.out.println(returnCourseList);
-
-        returnMatchingStudentList = contactTracingInstance.findMatchingStudents(returnCourseList);
-        //System.out.println(returnMatchingStudentList);
-
-        returnEmailList = contactTracingInstance.contactTracing("S103");
-        System.out.println(returnEmailList);
-
         return contactTracingInstance;
     }
 
     public static void main(String[] args){
         //calls the loadData method when the program is run
-        //loadData();
-        TaskTwo.main(null);
-        TaskTwo.compareCovidResult();
+        ContactTracingImpl ContactTracingObject = loadData();
+
+        TaskTwo taskTwoObject = new TaskTwo();
+
+        taskTwoObject.setStudentName();
+        System.out.println(taskTwoObject.studentName);
+        taskTwoObject.setStudentNumber();
+        System.out.println(taskTwoObject.studentNumber);
+        taskTwoObject.setCovidResult();
+        System.out.println(taskTwoObject.covidResult);
+        taskTwoObject.compareCovidResult();
+
+        if(taskTwoObject.covidResult.toLowerCase().equals("positive")){
+            List<String> matchingEmails = ContactTracingObject.contactTracing(taskTwoObject.studentNumber);
+            matchingEmails.forEach(System.out::println);
+        }
     }
 }
 
