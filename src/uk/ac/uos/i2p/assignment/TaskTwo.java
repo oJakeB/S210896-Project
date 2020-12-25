@@ -5,6 +5,7 @@ import java.awt.desktop.QuitEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -51,6 +52,24 @@ public class TaskTwo {
             outputFile.createNewFile();
             writingObject = new FileWriter(outputFile.getAbsolutePath());
             writingObject.write(studentName + "\n" + studentNumber + "\n\n");
+            writingObject.close();
+        } catch (IOException e) {
+            System.out.println("An Exception Has Been Caught:");
+            System.exit(1);
+        }
+    }
+
+    public static void writeSelfIsolateFile(List<String> studentIDList, List<String> matchingEmails){
+        System.out.println("Please input filename for isolation file containing student emails:");
+        String filename = takeInput.nextLine();
+        File isolationFile = new File("./covid outputs/" + filename + ".txt");
+        FileWriter writingObject;
+        try{
+            isolationFile.createNewFile();
+            writingObject = new FileWriter(isolationFile.getAbsolutePath());
+            for (int i = 0; i < studentIDList.toArray().length; i++) {
+                writingObject.write("Student Number: " + studentIDList.get(i) + " Needs to self isolate for 14 days, their email address is: " + matchingEmails.get(i) + "\n");
+            }
             writingObject.close();
         } catch (IOException e) {
             System.out.println("An Exception Has Been Caught:");

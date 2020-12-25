@@ -1,0 +1,5 @@
+Student Number: S109 Needs to self isolate for 14 days, their email address is: tmc@uos.ac.uk
+Student Number: S106 Needs to self isolate for 14 days, their email address is: kkm@uos.ac.uk
+Student Number: S107 Needs to self isolate for 14 days, their email address is: tls@uos.ac.uk
+Student Number: S104 Needs to self isolate for 14 days, their email address is: bdp@uos.ac.uk
+Student Number: S103 Needs to self isolate for 14 days, their email address is: klm@uos.ac.uk

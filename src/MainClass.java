@@ -65,16 +65,20 @@ public class MainClass {
         TaskTwo taskTwoObject = new TaskTwo();
 
         taskTwoObject.setStudentName();
-        System.out.println(taskTwoObject.studentName);
         taskTwoObject.setStudentNumber();
-        System.out.println(taskTwoObject.studentNumber);
         taskTwoObject.setCovidResult();
-        System.out.println(taskTwoObject.covidResult);
         taskTwoObject.compareCovidResult();
 
         if(taskTwoObject.covidResult.toLowerCase().equals("positive")){
+            //get relevant information to write ContactTracing file
+            List<String> matchingCourseList = ContactTracingObject.findMatchingCourses(taskTwoObject.studentNumber);
+            List<String> studentIDList = ContactTracingObject.findMatchingStudents(matchingCourseList);
             List<String> matchingEmails = ContactTracingObject.contactTracing(taskTwoObject.studentNumber);
-            matchingEmails.forEach(System.out::println);
+
+            //removing already positive student so he doesn't flag up again
+            studentIDList.remove(studentIDList.indexOf(taskTwoObject.studentNumber));
+
+            taskTwoObject.writeSelfIsolateFile(studentIDList, matchingEmails);
         }
     }
 }

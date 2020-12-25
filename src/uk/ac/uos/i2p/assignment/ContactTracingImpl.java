@@ -68,7 +68,7 @@ public class ContactTracingImpl implements ContactTracing{
                 }
             });
         }
-
         return matchingEmails;
     }
+
 }
