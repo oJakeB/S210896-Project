@@ -2,6 +2,7 @@
 package uk.ac.uos.i2p.assignment;
 
 //imports all of the utilities required for the code
+import java.awt.color.ICC_ColorSpace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,17 @@ public class ContactTracingImpl implements ContactTracing{
     public void loadStudentCourseList(Map<String, String> studentCourseEntry){ studentCourseList = studentCourseEntry; }
 
     public List<String> findMatchingCourses(String inputStudentNumber){
-        String returnValue = studentCourseList.get(inputStudentNumber);
         List<String> courseList = new ArrayList<String>();
-        if(returnValue != null){
-            courseList.add(returnValue);
+        try {
+            String returnValue = studentCourseList.get(inputStudentNumber);
+            if (returnValue != null) {
+                courseList.add(returnValue);
+                return courseList;
+            }
+        }
+        catch(IndexOutOfBoundsException exception){
+            System.out.println("Error: student number incorrect");
+            System.exit(-1);
         }
         return courseList;
     }

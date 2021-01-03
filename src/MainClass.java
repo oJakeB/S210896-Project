@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import uk.ac.uos.i2p.assignment.*;
 
 public class MainClass {
@@ -58,8 +59,10 @@ public class MainClass {
         return contactTracingInstance;
     }
 
+
     public static void main(String[] args){
         //calls the loadData method when the program is run
+
         ContactTracingImpl ContactTracingObject = loadData();
 
         TaskTwo taskTwoObject = new TaskTwo();
@@ -80,6 +83,12 @@ public class MainClass {
 
             taskTwoObject.writeSelfIsolateFile(studentIDList, matchingEmails);
         }
+
+        //following code runs the J unit testing
+        testing testingObject = new testing();
+        testingObject.testFindMatchingCourses();
+        testingObject.testFindMatchingStudents();
+        testingObject.testContactTracing();
     }
 }
 
